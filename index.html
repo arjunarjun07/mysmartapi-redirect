@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SmartAPI Redirect Handler</title>
+</head>
+<body>
+  <h2>SmartAPI Redirect Page</h2>
+  <p id="status">Waiting for access token or code...</p>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const code = params.get("code");
+    const accessToken = params.get("access_token");
+
+    if (code) {
+      document.getElementById("status").innerText = "Authorization code: " + code;
+      console.log("Code:", code);
+    } else if (accessToken) {
+      document.getElementById("status").innerText = "Access Token: " + accessToken;
+      console.log("Access Token:", accessToken);
+    } else {
+      document.getElementById("status").innerText = "No code or access_token found in URL.";
+    }
+  </script>
+</body>
+</html>
